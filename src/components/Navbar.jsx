@@ -5,9 +5,9 @@ const Navbar = () => {
   return (
     <nav className="flex items-center justify-between bg-zinc-500 px-10 py-3">
       <div className="logo">
-        <h1 className="text-xl font-semibold text-white">Mohammed Aftab Ansari</h1>
+        <h1 className="text-xl font-semibold text-white">MAA</h1>
       </div>
-      <div className="text-base font-semibold text-white flex gap-5">
+      <div className="text-base font-semibold text-white flex gap-5 hidden md:flex">
         <a href="#">Home</a>
         <a href="#">About Us</a>
         <a href="#">Our Services</a>
