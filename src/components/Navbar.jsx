@@ -15,7 +15,7 @@ const Navbar = () => {
         <a href="#">Our Services</a>
         <a href="#">Contact Us</a>
       </div>
-      <button onClick={()=>setToggle((prev)=>!prev)} className="bg-zinc-800 px-2 py-1 rounded cursor-pointer text-white">{toggle ? "Create" : "Close"} Account</button>
+      <button onClick={()=>setToggle((prev)=>!prev)} className="bg-zinc-800 px-2 py-1 rounded cursor-pointer text-white">{toggle ? "Create Profile" : "Close"}</button>
     </nav>
   );
 };

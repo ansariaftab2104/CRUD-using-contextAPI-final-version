@@ -4,7 +4,8 @@ export const MyStore = createContext()
 
 export const ContextProvider = ({children})=>{
     const [toggle, setToggle] = useState(true)
-    return <MyStore.Provider value={{setToggle, toggle}}>
+    const [userData, setUserData] = useState([])
+    return <MyStore.Provider value={{setToggle, toggle, setUserData, userData}}>
         {children}
     </MyStore.Provider>
 } 
