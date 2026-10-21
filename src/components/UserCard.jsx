@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { MyStore } from "../context/AppContext";
 
-const UserCard = ({user}) => {
-//   const { userData } = useContext(MyStore)
+const UserCard = ({ user }) => {
+  const { deleteUser } = useContext(MyStore);
   return (
     <div className="">
       {/* User Card */}
-      <div className="w-70 h-120 bg-white border border-zinc-200 rounded-3xl shadow-xl overflow-hidden">
+      <div className="w-70 h-140 bg-white border border-zinc-200 rounded-3xl shadow-xl overflow-hidden">
         {/* Top Section */}
         <div className="h-28 bg-zinc-400"></div>
 
@@ -49,6 +49,17 @@ const UserCard = ({user}) => {
                 {user.phone}
               </p>
             </div>
+          </div>
+          <div className="btns flex items-center justify-between mt-5">
+            <button className="bg-yellow-700 text-white px-2 py-1 rounded cursor-pointer">
+              Update
+            </button>
+            <button
+              onClick={() => deleteUser(user.id)}
+              className="bg-red-700 text-white px-2 py-1 rounded cursor-pointer"
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>

@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { MyStore } from "../context/AppContext";
 import { useForm } from "react-hook-form";
+// import nanoid from 'nanoid'
+import { nanoid } from 'nanoid'
 
 const Form = () => {
-  const { setUserData, setToggle } = useContext(MyStore);
+  const { setUserData, setToggle, userData } = useContext(MyStore);
   const {
     register,
     handleSubmit,
@@ -13,8 +15,12 @@ const Form = () => {
     mode: "onChange",
   });
   const handleForm = (data) => {
-    console.log(data);
-    setUserData((prev) => [...prev, data]);
+    const arr = [...userData,{...data, id: nanoid()}]
+    console.log(arr);
+    
+    // setUserData((prev) => );
+    setUserData(arr)
+    localStorage.setItem("usersData", JSON.stringify(arr))
 
     setToggle((prev) => !prev);
     reset();

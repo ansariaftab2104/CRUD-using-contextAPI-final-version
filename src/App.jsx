@@ -9,7 +9,7 @@ const App = () => {
   return (
     <div className="w-full min-h-screen bg-zinc-300">
       <Navbar />
-      {toggle ? <div className="flex flex-wrap gap-5 justify-center pt-10">{userData.map((user)=>{return <UserCard user={user} />})}</div> : <Form />}
+      {toggle ? <div className="flex flex-wrap gap-5 justify-center pt-10">{userData.map((user)=>{return <UserCard user={user} key={user.id} />})}</div> : <Form />}
     </div>
   );
 };
