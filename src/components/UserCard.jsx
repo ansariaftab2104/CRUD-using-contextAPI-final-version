@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { MyStore } from "../context/AppContext";
 
 const UserCard = ({ user }) => {
-  const { deleteUser } = useContext(MyStore);
+  const { deleteUser, setToggle, setUpdatedUser } = useContext(MyStore);
   return (
     <div className="">
       {/* User Card */}
@@ -51,7 +51,10 @@ const UserCard = ({ user }) => {
             </div>
           </div>
           <div className="btns flex items-center justify-between mt-5">
-            <button className="bg-yellow-700 text-white px-2 py-1 rounded cursor-pointer">
+            <button onClick={()=> {
+                setUpdatedUser(user)
+                setToggle((prev)=>!prev)
+            }} className="bg-yellow-700 text-white px-2 py-1 rounded cursor-pointer">
               Update
             </button>
             <button

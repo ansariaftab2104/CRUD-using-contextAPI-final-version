@@ -13,8 +13,12 @@ export const ContextProvider = ({children})=>{
         localStorage.setItem('usersData', JSON.stringify(newUserData))
     }
     // console.log(userData);
+
+    const [updatedUser, setUpdatedUser] = useState(null)
+    console.log(updatedUser);
     
-    return <MyStore.Provider value={{setToggle, toggle, setUserData, userData, deleteUser}}>
+    
+    return <MyStore.Provider value={{setToggle, toggle, setUserData, userData, deleteUser, updatedUser, setUpdatedUser}}>
         {children}
     </MyStore.Provider>
 } 

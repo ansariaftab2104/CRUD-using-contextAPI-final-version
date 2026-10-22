@@ -2,10 +2,11 @@ import React, { useContext } from "react";
 import { MyStore } from "../context/AppContext";
 import { useForm } from "react-hook-form";
 // import nanoid from 'nanoid'
-import { nanoid } from 'nanoid'
+import { nanoid } from "nanoid";
 
 const Form = () => {
-  const { setUserData, setToggle, userData } = useContext(MyStore);
+  const { setUserData, setToggle, userData, updatedUser, setUpdatedUser } =
+    useContext(MyStore);
   const {
     register,
     handleSubmit,
@@ -13,14 +14,32 @@ const Form = () => {
     formState: { errors },
   } = useForm({
     mode: "onChange",
+    defaultValues: updatedUser
+      ? updatedUser
+      : {
+          image: "",
+          name: "",
+          email: "",
+          password: "",
+          phone: "",
+        },
   });
   const handleForm = (data) => {
-    const arr = [...userData,{...data, id: nanoid()}]
-    console.log(arr);
-    
-    // setUserData((prev) => );
-    setUserData(arr)
-    localStorage.setItem("usersData", JSON.stringify(arr))
+    if (updatedUser) {
+      setUserData((prev) => {
+        let updatedArr = prev.map((user) => {
+          user.id === updatedUser.id
+            ? { ...data, id: updatedUser.id }
+            : user;
+        });
+        return updatedArr;
+      });
+      setUpdatedUser(null);
+    } else {
+      const arr = [...userData, { ...data, id: nanoid() }];
+      setUserData(arr);
+      localStorage.setItem("usersData", JSON.stringify(arr));
+    }
 
     setToggle((prev) => !prev);
     reset();
@@ -29,7 +48,7 @@ const Form = () => {
     <div className="min-h-screen flex items-center justify-center bg-zinc-100 p-5">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
         <h1 className="text-2xl font-bold text-zinc-800 text-center mb-6">
-          Create User
+          {updatedUser ? "Update User" : "Create User"}
         </h1>
 
         <form onSubmit={handleSubmit(handleForm)} className="space-y-5">
@@ -162,7 +181,7 @@ const Form = () => {
             type="submit"
             className="cursor-pointer w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700"
           >
-            Create User
+            {updatedUser ? "Update" : "Create"}
           </button>
         </form>
       </div>

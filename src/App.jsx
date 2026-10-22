@@ -6,6 +6,8 @@ import { MyStore } from "./context/AppContext";
 
 const App = () => {
   const { toggle, userData } = useContext(MyStore);
+  console.log(userData);
+  
   return (
     <div className="w-full min-h-screen bg-zinc-300">
       <Navbar />
